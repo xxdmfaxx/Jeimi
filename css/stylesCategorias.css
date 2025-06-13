@@ -51,3 +51,17 @@ body {
 .card:active {
   transform: scale(0.98);
 }
+
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 80vw;
+    height: 80vw;
+    font-size: 1.5rem;
+  }
+}
+

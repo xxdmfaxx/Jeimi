@@ -2006,3 +2006,32 @@ body {
     opacity: 1;
   }
 }
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    align-items: center;
+    padding: 2vmin;
+    overflow: auto;
+  }
+
+  .flowers {
+    transform: scale(0.7);
+  }
+
+  .btn-regresar {
+    font-size: 4vmin;
+    padding: 1vmin 3vmin;
+  }
+}
+
+@media (max-width: 480px) {
+  .flowers {
+    transform: scale(0.5);
+  }
+
+  .btn-regresar {
+    font-size: 5vmin;
+    padding: 1.2vmin 3.5vmin;
+  }
+}

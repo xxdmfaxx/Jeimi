@@ -73,3 +73,18 @@ button {
         transform: scale(1.05);
     }
 }
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 12vw;
+  }
+
+  h2 {
+    font-size: 6vw;
+  }
+
+  button {
+    font-size: 5vw;
+    padding: 10px 20px;
+  }
+}
