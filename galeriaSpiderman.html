@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería Spiderman</title>
+  <link rel="stylesheet" href="css/stylesGSP.css">
+</head>
+
+<body>
+ <a href="categorias.html" class="btn-regresar">⟵ Regresar</a>
+  <h1>Tu Spiderman 🕸️ 🕷</h1>
+
+  <div class="gallery">
+    <!-- 15 imágenes -->
+    <a href="imgGaleriaSP/img1.jpg"><img src="imgGaleriaSP/img1.jpg" alt="Imagen 1"></a>
+    <a href="imgGaleriaSP/img2.jpg"><img src="imgGaleriaSP/img2.jpg" alt="Imagen 2"></a>
+    <a href="imgGaleriaSP/img3.jpg"><img src="imgGaleriaSP/img3.jpg" alt="Imagen 3"></a>
+    <a href="imgGaleriaSP/img4.jpg"><img src="imgGaleriaSP/img4.jpg" alt="Imagen 4"></a>
+    <a href="imgGaleriaSP/img5.jpg"><img src="imgGaleriaSP/img5.jpg" alt="Imagen 5"></a>
+    <a href="imgGaleriaSP/img6.jpg"><img src="imgGaleriaSP/img6.jpg" alt="Imagen 6"></a>
+    <a href="imgGaleriaSP/img7.jpg"><img src="imgGaleriaSP/img7.jpg" alt="Imagen 7"></a>
+    <a href="imgGaleriaSP/img8.jpg"><img src="imgGaleriaSP/img8.jpg" alt="Imagen 8"></a>
+    <a href="imgGaleriaSP/img9.jpg"><img src="imgGaleriaSP/img9.jpg" alt="Imagen 9"></a>
+    <a href="imgGaleriaSP/img10.jpg"><img src="imgGaleriaSP/img10.jpg" alt="Imagen 10"></a>
+    <a href="imgGaleriaSP/img11.jpg"><img src="imgGaleriaSP/img11.jpg" alt="Imagen 11"></a>
+    <a href="imgGaleriaSP/img12.jpg"><img src="imgGaleriaSP/img12.jpg" alt="Imagen 12"></a>
+    <a href="imgGaleriaSP/img13.jpg"><img src="imgGaleriaSP/img13.jpg" alt="Imagen 13"></a>
+    <a href="imgGaleriaSP/img14.jpg"><img src="imgGaleriaSP/img14.jpg" alt="Imagen 14"></a>
+    <a href="imgGaleriaSP/img15.jpg"><img src="imgGaleriaSP/img15.jpg" alt="Imagen 15"></a>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" id="closeBtn">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-img" id="lightbox-img">
+  </div>
+
+  <!-- Script -->
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('closeBtn');
+
+    document.querySelectorAll('.gallery a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const imgSrc = this.querySelector('img').src;
+        lightboxImg.src = imgSrc;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+      }
+    });
+  </script>
+
+</body>
+</html>

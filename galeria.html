@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galería Jeimi/title>
+  <link rel="stylesheet" href="css/stylesGaleria.css">
+</head>
+
+<body>
+ <a href="categorias.html" class="btn-regresar">⟵ Regresar</a>
+  <h1>Mi Princesa 👸🏻</h1>
+
+  <div class="gallery">
+    <!-- 15 imágenes -->
+    <a href="imgGaleria/img1.jpg"><img src="imgGaleria/img1.jpg" alt="Imagen 1"></a>
+    <a href="imgGaleria/img2.jpg"><img src="imgGaleria/img2.jpg" alt="Imagen 2"></a>
+    <a href="imgGaleria/img3.jpg"><img src="imgGaleria/img3.jpg" alt="Imagen 3"></a>
+    <a href="imgGaleria/img4.jpg"><img src="imgGaleria/img4.jpg" alt="Imagen 4"></a>
+    <a href="imgGaleria/img5.jpg"><img src="imgGaleria/img5.jpg" alt="Imagen 5"></a>
+    <a href="imgGaleria/img6.jpg"><img src="imgGaleria/img6.jpg" alt="Imagen 6"></a>
+    <a href="imgGaleria/img7.jpg"><img src="imgGaleria/img7.jpg" alt="Imagen 7"></a>
+    <a href="imgGaleria/img8.jpg"><img src="imgGaleria/img8.jpg" alt="Imagen 8"></a>
+    <a href="imgGaleria/img9.jpg"><img src="imgGaleria/img9.jpg" alt="Imagen 9"></a>
+    <a href="imgGaleria/img10.jpg"><img src="imgGaleria/img10.jpg" alt="Imagen 10"></a>
+    <a href="imgGaleria/img11.jpg"><img src="imgGaleria/img11.jpg" alt="Imagen 11"></a>
+    <a href="imgGaleria/img12.jpg"><img src="imgGaleria/img12.jpg" alt="Imagen 12"></a>
+    <a href="imgGaleria/img13.jpg"><img src="imgGaleria/img13.jpg" alt="Imagen 13"></a>
+    <a href="imgGaleria/img14.jpg"><img src="imgGaleria/img14.jpg" alt="Imagen 14"></a>
+    <a href="imgGaleria/img15.jpg"><img src="imgGaleria/img15.jpg" alt="Imagen 15"></a>
+
+    <!-- Video -->
+    <video controls>
+      <source src="video/video1.mp4" type="video/mp4">
+      Tu navegador no soporta la reproducción de video.
+    </video>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" id="closeBtn">&times;</span>
+    <img src="" alt="Imagen ampliada" class="lightbox-img" id="lightbox-img">
+  </div>
+
+  <!-- Script -->
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('closeBtn');
+
+    document.querySelectorAll('.gallery a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const imgSrc = this.querySelector('img').src;
+        lightboxImg.src = imgSrc;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
