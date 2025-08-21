@@ -1,85 +1,192 @@
 /* Reset básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Pacifico', cursive;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Pacifico', cursive;
 }
 
-body, html {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: linear-gradient(135deg, #ffc1cc, #ffe4e1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Viewport estable en móviles + sin scroll lateral */
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;             /* iOS/Android barras dinámicas */
+  background: linear-gradient(135deg, #ffc1cc, #ffe4e1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;              /* evita “desborde” lateral */
+  overflow-y: auto;                /* permite scroll si hace falta */
+  padding: 16px;                   /* respiración en móviles */
 }
 
 /* Contenido central */
 .contenido {
-    position: relative;
-    text-align: center;
-    z-index: 10;
-    animation: fadeIn 2s ease forwards;
+  position: relative;
+  text-align: center;
+  z-index: 10;
+  animation: fadeIn 0.8s ease forwards;
+  max-width: clamp(320px, 92vw, 900px);
+  width: 100%;
 }
 
+/* Animación entrada */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Tipografía fluida */
 h1 {
-    font-size: 4rem;
-    color: #ff69b4;
-    text-shadow: 2px 2px 10px rgba(255, 182, 193, 0.5);
-    margin-bottom: 1rem;
+  font-size: clamp(1.8rem, 8vw, 4rem);
+  color: #ff69b4;
+  text-shadow: 2px 2px 10px rgba(255, 182, 193, 0.5);
+  margin-bottom: 0.75rem;
+  line-height: 1.1;
 }
 
 h2 {
-    font-size: 2rem;
-    color: #ff1493;
-    margin-bottom: 2rem;
+  font-size: clamp(1.1rem, 4.5vw, 2rem);
+  color: #ff1493;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
+/* Botón principal: tamaño/tacto fluidos */
 button {
-    background: #ffb6c1;
-    border: none;
-    padding: 15px 40px;
-    font-size: 1.5rem;
-    border-radius: 50px;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
+  background: #ffb6c1;
+  border: none;
+  padding: clamp(10px, 2.8vw, 15px) clamp(22px, 6vw, 40px);
+  font-size: clamp(0.95rem, 3.5vw, 1.25rem);
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
+  touch-action: manipulation;      /* reduce delay en iOS */
 }
-
 button:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(255, 182, 193, 0.6);
-    background: #ff69b4;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 20px rgba(255, 182, 193, 0.6);
+  background: #ff69b4;
 }
 
-/* Partículas flotantes */
+/* Partículas: no bloquean taps y no generan scroll */
 .particle {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: rgba(255, 182, 193, 0.7);
-    border-radius: 50%;
-    animation: float 8s infinite;
+  position: fixed;                 /* fija al viewport, no desplaza layout */
+  inset: 0 auto auto 0;            /* punto de referencia */
+  width: clamp(6px, 1.6vw, 10px);
+  height: clamp(6px, 1.6vw, 10px);
+  background-color: rgba(255, 182, 193, 0.7);
+  border-radius: 50%;
+  animation: float var(--t,8s) linear infinite;
+  pointer-events: none;            /* no bloquea clics en móviles */
+  will-change: transform, opacity; /* perf */
+  transform: translate3d(0,0,0);
 }
 
+/* Animación de partículas optimizada para móvil */
 @keyframes float {
-    0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-800px) translateX(50px);
-        opacity: 0;
-    }
+  0%   { transform: translate3d(var(--x,0), 0, 0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { transform: translate3d(calc(var(--x,0) + 50px), -80vh, 0); opacity: 0; }
+}
+
+/* Opcional: variaciones si tienes varias partículas (no requiere cambios HTML) */
+.particle:nth-child(3n)   { --t: 7s; --x: 10px;  }
+.particle:nth-child(3n+1) { --t: 9s; --x: 30px;  }
+.particle:nth-child(3n+2) { --t: 11s; --x: -20px;}
+
+/* Fondo oscuro (overlay) */
+.overlay {
+  display: none;                   /* cámbialo a flex vía JS para mostrar */
+  position: fixed;
+  inset: 0;                        /* top/right/bottom/left:0 */
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  padding: 16px;                   /* margen seguro en móviles */
+}
+
+/* Caja del formulario */
+.formulario {
+  background: #fff;
+  padding: clamp(14px, 3.5vw, 20px);
+  border-radius: 12px;
+  text-align: center;
+  width: min(92vw, 420px);
+  position: relative;
+  box-shadow: 0 0 15px rgba(255, 192, 203, 0.6);
+  animation: aparecer 0.25s ease;
+}
+
+/* Animación modal */
+@keyframes aparecer {
+  from { transform: scale(0.94); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+/* Botón cerrar (X) */
+.cerrar {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: clamp(18px, 4.5vw, 20px);
+  font-weight: bold;
+  color: #ff4d6d;
+  cursor: pointer;
+  transition: transform 0.2s;
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
+}
+.cerrar:hover { transform: scale(1.15); }
+
+/* Input de fecha */
+.formulario input[type="date"] {
+  padding: clamp(8px, 2.5vw, 10px);
+  width: 100%;
+  margin: 10px 0 14px;
+  border: 2px solid #ff4d6d;
+  border-radius: 8px;
+  outline: none;
+  font-size: clamp(0.95rem, 3.5vw, 1rem);
+  text-align: center;
+}
+
+/* Botón confirmar del modal */
+.formulario button {
+  background: #ff4d6d;
+  color: #fff;
+  border: none;
+  padding: clamp(10px, 3vw, 12px) clamp(14px, 5.2vw, 18px);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: clamp(0.95rem, 3.5vw, 1rem);
+  transition: background 0.25s ease;
+  width: 100%;
+}
+.formulario button:hover { background: #ff1a4d; }
+
+/* Mensaje */
+#mensaje {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: clamp(0.9rem, 3vw, 1rem);
+}
+
+/* Preferencias de movimiento: reduce para accesibilidad y batería */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* Ajustes extra por breakpoints (detalles finos) */
+@media (max-width: 480px) {
+  html, body { padding: 12px; }
+  .formulario { border-radius: 10px; }
+}
+
+@media (min-width: 1024px) {
+  .contenido { max-width: 960px; }
 }

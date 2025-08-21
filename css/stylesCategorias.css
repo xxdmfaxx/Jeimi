@@ -222,4 +222,9 @@ body {
         top: 15px;
         left: 15px;
     }
+
+    /* 🔥 Ajuste para que el título no quede debajo del botón */
+    .hero {
+        padding-top: 5rem; /* más espacio arriba en móviles */
+    }
 }
