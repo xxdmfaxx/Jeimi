@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Galería Spiderman</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/stylesGSP.css">
 </head>
-
 <body>
- <a href="categorias.html" class="btn-regresar">⟵ Regresar</a>
+  <a href="categorias.html" class="btn-regresar">⟵ Regresar</a>
   <h1>Tu Spiderman 🕸️ 🕷</h1>
 
   <div class="gallery">
-    <!-- 15 imágenes -->
     <a href="imgGaleriaSP/img1.jpg"><img src="imgGaleriaSP/img1.jpg" alt="Imagen 1"></a>
     <a href="imgGaleriaSP/img2.jpg"><img src="imgGaleriaSP/img2.jpg" alt="Imagen 2"></a>
     <a href="imgGaleriaSP/img3.jpg"><img src="imgGaleriaSP/img3.jpg" alt="Imagen 3"></a>
@@ -37,33 +35,6 @@
     <img src="" alt="Imagen ampliada" class="lightbox-img" id="lightbox-img">
   </div>
 
-  <!-- Script -->
-  <script>
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const closeBtn = document.getElementById('closeBtn');
-
-    document.querySelectorAll('.gallery a').forEach(link => {
-      link.addEventListener('click', function (e) {
-        e.preventDefault();
-        const imgSrc = this.querySelector('img').src;
-        lightboxImg.src = imgSrc;
-        lightbox.style.display = 'flex';
-      });
-    });
-
-    closeBtn.addEventListener('click', () => {
-      lightbox.style.display = 'none';
-      lightboxImg.src = '';
-    });
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-        lightboxImg.src = '';
-      }
-    });
-  </script>
-
+  <script src="js/lightbox.js"></script>
 </body>
 </html>

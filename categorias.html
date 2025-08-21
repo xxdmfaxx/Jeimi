@@ -1,24 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Categorías</title>
-  <link rel="stylesheet" href="css/stylesCategorias.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Categorías — Jardín de Categorías</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/stylesCategorias.css"/>
+  <meta name="description" content="Explora un mundo de categorías con un diseño vivo, animado y hermoso."/>
 </head>
 <body>
-  <div class="container">
-    <!-- Fila superior -->
-    <div class="row">
-      <a href="rosas.html" class="card">Flores 1</a>
-      <a href="tulipanes.html" class="card">Flores 2</a>
-      <a href="girasoles.html" class="card">Flores 3</a>
-    </div>
-    <!-- Fila inferior -->
-    <div class="row">
-      <a href="galeria.html" class="card">Tuuuuuuu</a>
-      <a href="galeriaSpiderman.html" class="card">🕸️ 🕷</a>
-    </div>
-  </div>
+  <!-- Botón regresar -->
+  <a href="index.html" class="btn-regresar" aria-label="Regresar al inicio">⟵ Regresar</a>
+
+  <!-- Fondo dinámico -->
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <!-- Ondas decorativas -->
+  <div class="wave wave1" aria-hidden="true"></div>
+  <div class="wave wave2" aria-hidden="true"></div>
+
+  <!-- Título hermoso -->
+  <header class="hero">
+    <h1 class="title" aria-label="Jardín de Categorías">
+      <span>✨ Jardín de Categorías ✨</span>
+    </h1>
+    <p class="subtitle">Explora, descubre y déjate sorprender</p>
+  </header>
+
+  <!-- Categorías flotantes -->
+  <main class="container" aria-label="Categorías">
+    <a href="rosas.html" class="circle-card" style="--delay:0s; --x:10%; --y:18%;" aria-label="Flores 1">
+      <img src="img/rosas.jpg" alt="Rosas">
+      <span>🌹 Flores 1</span>
+    </a>
+
+    <a href="tulipanes.html" class="circle-card" style="--delay:0.1s; --x:62%; --y:14%;" aria-label="Flores 2">
+      <img src="img/tulipanes.jpg" alt="Tulipanes">
+      <span>🌷 Flores 2</span>
+    </a>
+
+    <a href="girasoles.html" class="circle-card" style="--delay:0.2s; --x:22%; --y:62%;" aria-label="Flores 3">
+      <img src="img/girasoles.jpg" alt="Girasoles">
+      <span>🌻 Flores 3</span>
+    </a>
+
+    <a href="galeria.html" class="circle-card" style="--delay:0.3s; --x:74%; --y:64%;" aria-label="Galería">
+      <img src="img/galeria.jpg" alt="Galería fotográfica">
+      <span>📸 Tuuuuuuu</span>
+    </a>
+
+    <a href="galeriaSpiderman.html" class="circle-card" style="--delay:0.4s; --x:42%; --y:38%;" aria-label="Spidey">
+      <img src="img/spiderman.jpg" alt="Spiderman">
+      <span>🕸️ Spidey</span>
+    </a>
+  </main>
+
+  <noscript>
+    <style>
+      .container { position: relative; width: 100%; padding: 2rem; display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+      .circle-card { position: static !important; }
+    </style>
+    <p style="text-align:center;color:#fff;margin-top:1rem">Activa JavaScript para disfrutar de las animaciones ✨</p>
+  </noscript>
+
+  <script src="js/particles.js"></script>
 </body>
 </html>
